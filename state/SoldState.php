@@ -37,4 +37,15 @@ class SoldState implements State
             $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
         }
     }
+
+    public function refill(int $n)
+    {
+        if ($n > 0) {
+            echo "load $n gumballs \n";
+            return true;
+        } else {
+            echo "input error! $n <= 0\n";
+            return false;
+        }
+    }
 }

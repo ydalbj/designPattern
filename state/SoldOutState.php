@@ -31,4 +31,16 @@ class SoldOutState implements State
     {
         echo "no gumball dispensed\n";
     }
+
+    public function refill(int $n)
+    {
+        if ($n > 0) {
+            echo "load $n gumballs \n";
+            $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
+            return true;
+        } else {
+            echo "input error! $n <= 0\n";
+            return false;
+        }
+    }
 }

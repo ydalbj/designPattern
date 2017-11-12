@@ -62,6 +62,13 @@ class GumballMachine
         }
     }
 
+    public function refill(int $n)
+    {
+        if ($this->state->refill($n)) {
+            $this->count += $n;
+        }
+    }
+
     public function getcount()
     {
         return $this->count;

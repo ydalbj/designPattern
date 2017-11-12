@@ -7,4 +7,5 @@ interface State
     public function ejectQuarter();
     public function turnCrank();
     public function dispense();
+    public function refill(int $n);
 }

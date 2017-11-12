@@ -37,4 +37,15 @@ class HasQuarterState implements State
     {
         echo "no gumball dispensed\n";
     }
+
+    public function refill(int $n)
+    {
+        if ($n > 0) {
+            echo "load $n gumballs \n";
+            return true;
+        } else {
+            echo "input error! $n <= 0\n";
+            return false;
+        }
+    }
 }
