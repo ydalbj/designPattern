@@ -1,0 +1,46 @@
+<?php
+namespace State;
+
+use State\State;
+
+class WinnerState implements State
+{
+    private $gumballMachine;
+
+    public function __construct(GumballMachine $m)
+    {
+        $this->gumballMachine = $m;
+    }
+
+    public function insertQuarter()
+    {
+        echo "we are already giving you a gumball\n";
+    }
+
+    public function ejectQuarter()
+    {
+        echo "sorry you alread turned the crank\n";
+    }
+
+    public function turnCrank()
+    {
+        echo "truning twice doesnt get you another gumball\n";
+    }
+
+    public function dispense()
+    {
+        echo "You are a winner!you get gumball twice\n";
+        $this->gumballMachine->releaseBall();
+        if ($this->gumballMachine->getCount() === 0) {
+            $gumballMachine->setState($gumballMachine->getSoldOutState());
+            return;
+        }
+        $this->gumballMachine->releaseBall();
+        if ($this->gumballMachine->getCount() > 0) {
+            $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
+        } else {
+            echo "oops, no gumballs";
+            $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
+        }
+    }
+}
