@@ -4,8 +4,9 @@ namespace Simduck;
 use Simduck\Quackable;
 use Simduck\Observable;
 
-class MallardDuck implements Quackable
+class Flock implements Quackable
 {
+    private $quacks = [];
     private $observable;
 
     public function __construct()
@@ -13,9 +14,17 @@ class MallardDuck implements Quackable
         $this->observable = new Observable($this);
     }
 
+    public function add(Quackable $q)
+    {
+        $this->quacks[] = $q;
+    }
+
     public function quack()
     {
-        echo "Quack\n";
+        foreach ($this->quacks as $v)
+        {
+            $v->quack();
+        }
         $this->notifyObservers();
     }
 
@@ -31,6 +40,11 @@ class MallardDuck implements Quackable
 
     public function __toString()
     {
-        return __CLASS__;
+        $name = '';
+        foreach ($this->quacks as $q)
+        {
+            $name .= $q . ',';
+        }
+        return $name;
     }
 }

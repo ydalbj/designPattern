@@ -7,4 +7,19 @@ class Goose
     {
         echo "Honk\n";
     }
+
+    public function registerObserver(Observer $o)
+    {
+        $this->observable->registerObserver($o);
+    }
+
+    public function notifyObservers()
+    {
+        $this->observable->notifyObservers();
+    }
+
+    public function __toString()
+    {
+        return __CLASS__;
+    }
 }

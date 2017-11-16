@@ -1,7 +1,10 @@
 <?php
 namespace Simduck;
 
-interface Quackable
+use Simduck\QuackObservable;
+
+
+interface Quackable extends QuackObservable
 {
     public function quack();
 }
